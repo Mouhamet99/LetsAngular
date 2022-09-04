@@ -1,6 +1,7 @@
-import {likesComponent} from './like.component.js'
-
-let component = new likesComponent(10, true)
-console.log(component.likesCount, component.isSelected);
-component.onClick();
-console.log(component.likesCount, component.isSelected);
+function log(){
+   for (var index = 0; index < 5; index++) {
+      console.log(index);
+   }
+   console.log('Finally index = ', index);
+}
+log()
