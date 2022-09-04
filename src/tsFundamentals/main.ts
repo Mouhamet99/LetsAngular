@@ -1,10 +1,6 @@
 class Point {
-   x: number;
-   y: number;
 
-   constructor(x?: number, y?: number){
-      this.x = x;
-      this.y = y;
+   constructor(private x?: number, private y?: number){
    }
 
    draw (){
@@ -12,4 +8,5 @@ class Point {
    }
 }
 let point = new Point(1, 2);
+
 point.draw();
