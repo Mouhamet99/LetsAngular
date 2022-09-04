@@ -15,9 +15,14 @@ var Color;
     Color[Color["Blue"] = 2] = "Blue";
 })(Color || (Color = {}));
 var backgroundColor = Color.Blue;
+// Types assertions
 var message;
 message = 'abc';
 // let endsWithC = message.endsWith('c') // no autocompletion
 var endsWithC = message.endsWith('c');
 var AlternativeWay = message.endsWith('c');
 console.log({ endsWithC: endsWithC, AlternativeWay: AlternativeWay });
+function drawPoint(point) {
+    console.log('drawing point');
+}
+drawPoint({ x: 0, y: 1 });
