@@ -12,3 +12,11 @@ const ColorBlue = 2
 
 enum Color{Gray = 0, Green = 1, Blue = 2}
 let backgroundColor = Color.Blue
+
+// Types assertions
+let message: any;
+message = 'abc';
+// let endsWithC = message.endsWith('c') // no autocompletion
+let endsWithC = (message as string).endsWith('c')
+let AlternativeWay = (<string>message).endsWith('c')
+console.log({endsWithC, AlternativeWay});
