@@ -1,24 +1,23 @@
-var Point = /** @class */ (function () {
-    function Point(x, y) {
-        this.x = x;
+class Point {
+    constructor(_x, y) {
+        this._x = _x;
         this.y = y;
     }
-    Point.prototype.draw = function () {
-        console.log("X:" + this.x + ", Y:" + this.y);
-    };
-    Point.prototype.getX = function () {
-        return this.x;
-    };
-    Point.prototype.setX = function (value) {
+    draw() {
+        console.log('x:' + this._x + ', Y:' + this.y);
+    }
+    get x() {
+        return this._x;
+    }
+    set x(value) {
         if (value < 0) {
-            throw new Error("value can not be less than zero");
+            throw new Error('value can not be less than zero');
         }
-        this.x = value;
-    };
-    return Point;
-}());
-var point = new Point(1, 2);
-var x = point.getX();
-console.log({ x: x });
-point.setX(10);
+        this._x = value;
+    }
+}
+let point = new Point(1, 2);
+let x = point.x;
+console.log({ x });
+point.x = 10;
 point.draw();
