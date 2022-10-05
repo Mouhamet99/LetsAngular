@@ -22,10 +22,15 @@ import { AuthorService } from '../author.service';
           <span class="mx-2"> benefit: {{author.benefit | currency:'USD':'symbol':'3.2-2'}}</span>
       </li>
     </ul> 
+
+    <p>{{paragraph | summary}}</p>
   `,
   styleUrls: ['./author.component.css'],
 })
 export class AuthorComponent implements OnInit {
+
+  paragraph: string = "  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis ipsam ipsa optio, ullam aut corporis voluptate a iure accusantium earum voluptatum dolores velit neque numquam labore dolore voluptas consequuntur expedita ut. Quos nobis alias accusantium consequuntur similique maiores, atque expedita temporibus rem mollitia voluptas suscipit quis officia? Laboriosam, architecto voluptatem!  ";
+
 
   email :string = "";
   name:string = "";
