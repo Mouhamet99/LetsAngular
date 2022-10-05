@@ -6,17 +6,20 @@ import { AuthorService } from '../author.service';
   // templateUrl: './author.component.html',
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
-  <input class="form-control" #email (keyup.enter)="onKeyUp(email.value)" />
+  <input class="form-control" [(ngModel)]="email" (keyup.enter)="onKeyUp()" placeholder="user@me.com"/>
+  <input class="form-control" [(ngModel)]="name" (keyup.enter)="onKeyUp()" placeholder="username"/>
     <ul>
       <li *ngFor='let author of authors' class="m-2"  (click)="onLiClicked()">
           {{ author.name }}
-          <button class="btn btn-sm  btn-info" (click)="onCall($event)">Call</button>
+          <button class="btn btn-sm  btn-info">Call</button>
       </li>
     </ul> 
   `,
   styleUrls: ['./author.component.css'],
 })
 export class AuthorComponent implements OnInit {
+  email :string = "";
+  name:string = "";
   authors : author[] = [];
   constructor(service: AuthorService) { 
     this.authors = service.getAuthors()
@@ -31,12 +34,9 @@ export class AuthorComponent implements OnInit {
   onLiClicked(){
     console.log("li click");
   }
-  onCall($event: Event){
-    $event.stopPropagation();
-    console.log("btn click", $event.target);
-  }
-  onKeyUp(email: string) { 
-    console.log(email);
+  onKeyUp() { 
+    console.log(this.email);
+    console.log(this.name);
   }
 
 }
