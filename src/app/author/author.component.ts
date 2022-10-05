@@ -6,7 +6,7 @@ import { AuthorService } from '../author.service';
   // templateUrl: './author.component.html',
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
-  <input class="form-control" (keyup.enter)="onKeyUp()" />
+  <input class="form-control" #email (keyup.enter)="onKeyUp(email.value)" />
     <ul>
       <li *ngFor='let author of authors' class="m-2"  (click)="onLiClicked()">
           {{ author.name }}
@@ -35,8 +35,8 @@ export class AuthorComponent implements OnInit {
     $event.stopPropagation();
     console.log("btn click", $event.target);
   }
-  onKeyUp() { 
-    console.log("Enter was pressed");
+  onKeyUp(email: string) { 
+    console.log(email);
   }
 
 }
