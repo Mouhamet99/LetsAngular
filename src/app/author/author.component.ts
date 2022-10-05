@@ -7,10 +7,8 @@ import { AuthorService } from '../author.service';
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
   <div  class="row col-4">
-
     <input class="form-control" [(ngModel)]="email" (keyup.enter)="onKeyUp()" placeholder="user@me.com"/>
     <input class="form-control" [(ngModel)]="name" (keyup.enter)="onKeyUp()" placeholder="username"/>
-  </div>
     <ul>
       <li *ngFor='let author of authors' class="m-2"  (click)="onLiClicked()">
           {{ author.name }}

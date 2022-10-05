@@ -1,0 +1,11 @@
+<div class="btn btn-lg-group">
+    <button data-level="1" type="button" class="btn btn-lg btn-outline-secondary" (click)="onRate($event)">
+        <i class="bi" [class]="rate && number >= 1 ? 'bi-star-fill' : 'bi-star'" ></i>
+    </button>
+    <button data-level="2" type="button" class="btn btn-lg btn-outline-secondary" (click)="onRate($event)">
+        <i class="bi" [class]="rate && number >= 2 ? 'bi-star-fill' : 'bi-star'" ></i>
+    </button>
+    <button data-level="3" type="button" class="btn btn-lg btn-outline-secondary" (click)="onRate($event)">
+        <i class="bi" [class]="rate && number >= 3 ? 'bi-star-fill' : 'bi-star'" ></i>
+    </button>
+  </div>
