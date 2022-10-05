@@ -7,16 +7,16 @@ import { AuthorService } from '../author.service';
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
     <ul>
-      <li *ngFor='let author of authors'>
-          {{ author }}
-          <button class="btn btn-info">detail</button>
+      <li *ngFor='let author of authors' class="m-2">
+          {{ author.name }}
+          <button class="btn btn-info" [class.active]="author.isActive">detail</button>
       </li>
     </ul> 
   `,
   styleUrls: ['./author.component.css'],
 })
 export class AuthorComponent implements OnInit {
-  authors : string[] = [];
+  authors : author[] = [];
   constructor(service: AuthorService) { 
     this.authors = service.getAuthors()
   }
@@ -28,4 +28,8 @@ export class AuthorComponent implements OnInit {
     return this.authors.length
   }
 
+}
+interface author{
+  name: string,
+  isActive: boolean
 }
