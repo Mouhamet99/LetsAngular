@@ -9,6 +9,7 @@ import { AuthorService } from '../author.service';
     <ul>
       <li *ngFor='let author of authors'>
           {{ author }}
+          <button class="btn btn-info">detail</button>
       </li>
     </ul> 
   `,
