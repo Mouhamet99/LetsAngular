@@ -7,9 +7,9 @@ import { AuthorService } from '../author.service';
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
     <ul>
-      <li *ngFor='let author of authors' class="m-2">
+      <li *ngFor='let author of authors' class="m-2" [style.color]=" author.isActive ? 'green': 'red' ">
           {{ author.name }}
-          <button class="btn btn-info" [class.active]="author.isActive">detail</button>
+          <button class="btn btn-sm  btn-info" [class.active]="author.isActive">{{author.isActive}}</button>
       </li>
     </ul> 
   `,
