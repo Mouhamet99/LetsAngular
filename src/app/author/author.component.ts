@@ -6,20 +6,30 @@ import { AuthorService } from '../author.service';
   // templateUrl: './author.component.html',
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
-  <input class="form-control" [(ngModel)]="email" (keyup.enter)="onKeyUp()" placeholder="user@me.com"/>
-  <input class="form-control" [(ngModel)]="name" (keyup.enter)="onKeyUp()" placeholder="username"/>
+  <div  class="row col-4">
+
+    <input class="form-control" [(ngModel)]="email" (keyup.enter)="onKeyUp()" placeholder="user@me.com"/>
+    <input class="form-control" [(ngModel)]="name" (keyup.enter)="onKeyUp()" placeholder="username"/>
+  </div>
     <ul>
       <li *ngFor='let author of authors' class="m-2"  (click)="onLiClicked()">
           {{ author.name }}
           <button class="btn btn-sm  btn-info">Call</button>
+
+          <span class="mx-2"> since {{author.date | date:'shortDate'}}</span>
+          <span class="mx-2">{{author.books | number}} books</span>
+          <span class="mx-2">{{author.rate}} rates</span>
+          <span class="mx-2"> benefit: {{author.benefit | currency:'USD':'symbol':'3.2-2'}}</span>
       </li>
     </ul> 
   `,
   styleUrls: ['./author.component.css'],
 })
 export class AuthorComponent implements OnInit {
+
   email :string = "";
   name:string = "";
+
   authors : author[] = [];
   constructor(service: AuthorService) { 
     this.authors = service.getAuthors()
@@ -42,5 +52,9 @@ export class AuthorComponent implements OnInit {
 }
 interface author{
   name: string,
-  isActive: boolean
+  isActive: boolean,
+  date: Date,
+  rate: number,
+  books: number,
+  benefit: number
 }
