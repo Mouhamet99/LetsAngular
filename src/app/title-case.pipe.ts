@@ -4,18 +4,21 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class titleCase implements PipeTransform {
     transform(value: string): any {
+        if (!value)
+            return null
 
-        let words = value.toLowerCase().split(" ");
-        console.log(words);
+        let words = value.split(" ");
+        let wordsTitleCased = words.map((word, index) => this.isProposition(word) && index != 0 ? word.toLowerCase() : this.toTitleCase(word))
         
-        let wordsTitleCased = words.map((word, index )=>{
-            console.log(word);
-            
-            if ((word == 'of' || word == "the" ) && index != 0) 
-                return word.toLowerCase();
-            else 
-                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        })
         return wordsTitleCased.join(" ");
+    }
+
+    private toTitleCase(word: string): string {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+
+    private isProposition(word: string): boolean {
+        const prepositions: string[] = ["of", "the"];
+        return prepositions.includes(word.toLowerCase())
     }
 }
