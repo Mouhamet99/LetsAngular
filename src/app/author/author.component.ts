@@ -31,6 +31,7 @@ export class AuthorComponent implements OnInit {
     console.log("li click");
   }
   onCall($event: Event){
+    $event.stopPropagation();
     console.log("btn click", $event.target);
   }
 
