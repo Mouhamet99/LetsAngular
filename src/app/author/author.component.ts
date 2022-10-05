@@ -7,9 +7,9 @@ import { AuthorService } from '../author.service';
   template: `
   <h1>{{getAuthorsNumbers() +' Authors'}}</h1>
     <ul>
-      <li *ngFor='let author of authors' class="m-2" [style.color]=" author.isActive ? 'green': 'red' ">
+      <li *ngFor='let author of authors' class="m-2"  (click)="onLiClicked()">
           {{ author.name }}
-          <button class="btn btn-sm  btn-info" [class.active]="author.isActive">{{author.isActive}}</button>
+          <button class="btn btn-sm  btn-info" (click)="onCall($event)">Call</button>
       </li>
     </ul> 
   `,
@@ -26,6 +26,12 @@ export class AuthorComponent implements OnInit {
 
   getAuthorsNumbers(){
     return this.authors.length
+  }
+  onLiClicked(){
+    console.log("li click");
+  }
+  onCall($event: Event){
+    console.log("btn click", $event.target);
   }
 
 }
