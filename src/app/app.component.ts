@@ -11,4 +11,8 @@ export class AppComponent {
     title : 'Hello World Angular',
     isFavorite: false
   }
+
+  onFavoriteChange(outputData: string){
+    console.log("outputData", outputData);
+  }
 }
