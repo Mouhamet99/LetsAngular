@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'bootstrap-like',
+  selector: 'like',
   templateUrl: './like.component.html',
   styleUrls: ['./like.component.css']
 })
 export class LikeComponent {
-  @Input('isLiked') isLiked: boolean = false;
+  @Input('isActive') isActive: boolean = false;
   @Input('likesCount') likesCount: number = 0;
 
   handleClick = () => {
-    this.isLiked = !this.isLiked;
-    this.likesCount =  this.isLiked ? 1: 0;
+    this.isActive = !this.isActive;
+    this.likesCount +=  this.isActive ? 1: -1;
   }
 
 }

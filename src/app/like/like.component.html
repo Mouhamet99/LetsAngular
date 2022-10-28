@@ -1,10 +1,13 @@
 <style>
     .bi-balloon-heart-fill{
         color: deeppink;
+        cursor: pointer;
     }
-    .bi:hover{
-cursor: pointer;
+    .bi-balloon-heart{
+        color: #ccc;
     }
 </style>
-<i class="display-1 bi " [class.bi-balloon-heart-fill]="isLiked" [class.bi-balloon-heart]="!isLiked"  (click)="handleClick()"></i>
+<span  (click)="handleClick()">
+    <i class="display-1 bi " [class.bi-balloon-heart-fill]="isActive" [class.bi-balloon-heart]="!isActive" ></i>
+</span>
 <span class="display-2">{{likesCount}}</span>

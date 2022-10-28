@@ -12,7 +12,7 @@ export class AppComponent {
     likesCount: 0
   }
   handleCounter(isLiked: boolean){
-    this.tweet.likesCount = isLiked? 1: 0; 
+    this.tweet.likesCount = isLiked ? 1: 0; 
   }
 
 }
