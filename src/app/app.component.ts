@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import FavoriteChangeEventArgs from './favorite/favorite.component';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +6,13 @@ import FavoriteChangeEventArgs from './favorite/favorite.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hello World Angular'
-  post = {
-    title : 'Hello World Angular',
-    isFavorite: false
+  tweet = {
+    body : 'Hello World Angular',
+    isLiked: false,
+    likesCount: 0
+  }
+  handleCounter(isLiked: boolean){
+    this.tweet.likesCount = isLiked? 1: 0; 
   }
 
-  onFavoriteChange(outputData: FavoriteChangeEventArgs){
-    console.log("updated ", outputData);
-  }
 }
