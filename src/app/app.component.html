@@ -1,9 +1,10 @@
-<div *ngIf="courses.length > 0 ; then coursesList else noCourses "></div>
+<ul class="nav nav-pills">
+  <li class="nav-item"><a class="nav-link"  [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map view</a></li>
+  <li class="nav-item" ><a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List view</a></li>
+</ul>
 
-<ng-template #coursesList>
-  <h1>List of  courses</h1>
-</ng-template>
-
-<ng-template #noCourses>
-  <h1>Not courses yet</h1>
-</ng-template>
+<div [ngSwitch]="viewMode">
+  <p *ngSwitchCase="'map'">Map View </p>
+  <p *ngSwitchCase="'list'">List View </p>
+  <p *ngSwitchDefault>OtherWhise View </p>
+</div>
