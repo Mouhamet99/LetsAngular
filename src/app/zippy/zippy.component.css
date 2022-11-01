@@ -1,1 +1,26 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+.zippy-container{
+    border: 1px solid #ccc ;
+    border-radius: 10px;
+}
+.zippy-heading:hover{
+    background-color:#cccccc59;
+}
+.zippy-heading{
+    padding: 20px;
+    font-size: 20px;
+    font-weight:bold;
+    border-radius: 10px;
+    
+  
+}
+.zippy-body{
+    padding: 20px;
+    margin: 20px 0;
+}
+.expanding{
+    background-color: #ccc;
+}
+span.icon{
+    float: right;
+}
