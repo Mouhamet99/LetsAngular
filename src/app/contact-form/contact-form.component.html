@@ -1,0 +1,21 @@
+<form class="form">
+    <div class="form-group">
+      <label for="firstName" class="form-label">
+        First name
+      </label>
+      <input ngModel name="firstName" #firstName="ngModel"  id="firstName"  class="form-control"
+      (change)="log(firstName)"
+    >
+      
+    </div>
+    <div class="form-group">
+      <label for="message" class="form-label">
+        Message
+      </label>
+      <textarea ngModel name="message" id="message" class="form-control" cols="30" rows="10"></textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
+    </div>
+    
+  </form>
