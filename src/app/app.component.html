@@ -1,4 +1,4 @@
-<ul class="nav nav-pills">
+<!-- <ul class="nav nav-pills">
   <li class="nav-item"><a class="nav-link"  [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map view</a></li>
   <li class="nav-item" ><a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List view</a></li>
 </ul>
@@ -8,3 +8,8 @@
   <p *ngSwitchCase="'list'">List View </p>
   <p *ngSwitchDefault>OtherWhise View </p>
 </div>
+ -->
+
+ <ul *ngFor="let course of courses, index as i; even as isEvent">
+   <li>{{i}} - {{ course.title }} {{ isEvent ? 'even': 'odd'}}</li>
+ </ul>

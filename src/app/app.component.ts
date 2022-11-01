@@ -7,7 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Hello World Angular';
-  courses = [1, 2];
+  courses = [
+    {title: "Course 1", author: "Epsilon"},
+    {title: "Course 2", author: "Soso"},
+    {title: "Course 1", author: "Libs"}
+  ];
   viewMode :string = "map";
+
 }
 
