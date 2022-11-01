@@ -1,16 +1,1 @@
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <!-- class binding -->
-    <a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map view</a>
-  </li>
-    <!-- ngClass property binding -->
-    <a class="nav-link" [ngClass]="{'active': viewMode == 'map','btn-danger': viewMode == 'map'}" (click)="viewMode = 'map'">Button 1</a>
-    <a [ngClass]="'btn btn-primary'" (click)="viewMode = 'list'">Button 2</a>
-    <a [ngClass]="['btn', 'btn-info']" (click)="viewMode = 'list'">Button 4</a>
-</ul>
-
-<div [ngSwitch]="sexe">
-  <p *ngSwitchCase="'m'">Masculin</p>
-  <p *ngSwitchCase="'f'">Feminin</p>
-  <p *ngSwitchDefault>UNdefined</p>
-</div>
+<input type="text" class="form-control form-control-lg"  [appInputDirective]="'uppercase'">
