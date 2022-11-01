@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   courses :Course[] = [];
+  viewMode: string = 'map';
+  sexe: string = 'f';
 
   add(){
     this.courses.push({id: 4, title: "Course 4", author: "Rokhaya"})
