@@ -9,7 +9,10 @@
   <p *ngSwitchDefault>OtherWhise View </p>
 </div>
  -->
-
+<button class="btn btn-primary" (click)="add()">Add</button>
  <ul *ngFor="let course of courses, index as i; even as isEvent">
-   <li>{{i}} - {{ course.title }} {{ isEvent ? 'even': 'odd'}}</li>
+   <li>
+     {{i}} - {{ course.title }} {{ isEvent ? 'even': 'odd'}}
+    <button (click)="onRemove(course)">remove</button>
+   </li>
  </ul>
