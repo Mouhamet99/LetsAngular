@@ -6,14 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  courses = [
-    {title: "Course 1", author: "Epsilon"},
-    {title: "Course 2", author: "Soso"},
-    {title: "Course 1", author: "Libs"}
-  ];
+  courses :Course[] = [];
 
   add(){
-    this.courses.push({title: "Course 4", author: "Rokhaya"})
+    this.courses.push({id: 4, title: "Course 4", author: "Rokhaya"})
   }
 
   onRemove(course: any){
@@ -23,8 +19,20 @@ export class AppComponent {
     this.courses.splice(index, 1)
   }
 
+  loadCourses(){
+    this.courses = [
+      {id: 1, title: "Course 1", author: "Epsilon"},
+      {id: 2, title: "Course 2", author: "Soso"},
+      {id: 3, title: "Course 1", author: "Libs"}
+    ];
+  }
+
+  trackCourses(index:any, course:any){
+    return course? course.id : undefined;
+  }
+
 }
 export default interface Course{
-  "title": String, "author": String
+  "id": number, "title": String, "author": String
 }
 

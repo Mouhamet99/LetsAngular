@@ -10,7 +10,8 @@
 </div>
  -->
 <button class="btn btn-primary" (click)="add()">Add</button>
- <ul *ngFor="let course of courses, index as i; even as isEvent">
+<button class="btn btn-secondary" (click)="loadCourses()">Load Courses</button>
+ <ul *ngFor="let course of courses, index as i; even as isEvent; let odd = odd; trackBy: trackCourses">
    <li>
      {{i}} - {{ course.title }} {{ isEvent ? 'even': 'odd'}}
     <button (click)="onRemove(course)">remove</button>
