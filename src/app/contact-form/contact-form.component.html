@@ -4,8 +4,12 @@
         First name
       </label>
       <input ngModel name="firstName" #firstName="ngModel"  id="firstName"  class="form-control"
+      [class.is-invalid]="firstName.touched && firstName.control.value === ''"
       (change)="log(firstName)"
     >
+    <div class="invalid-feedback">
+        Please Enter a valid username.
+      </div> 
       
     </div>
     <div class="form-group">
