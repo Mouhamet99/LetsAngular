@@ -11,4 +11,8 @@ export class ContactFormComponent {
   log(x: any) {
     console.log(x);
   }
+  submit(form: any){
+    console.log(form);
+    
+  }
 }
