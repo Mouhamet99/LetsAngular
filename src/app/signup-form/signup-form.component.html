@@ -8,6 +8,9 @@
             type="text"
             class="form-control"
         />
+        <span *ngIf="username?.pending" class="text-danger">
+            Checking uniqueness...
+        </span>
         <div class="invalid-feedback">
             <span *ngIf="username?.errors?.['required']"
                 >Username is required</span
