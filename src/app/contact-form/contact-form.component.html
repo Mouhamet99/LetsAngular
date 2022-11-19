@@ -1,54 +1,37 @@
 <form class="form" #f="ngForm" (submit)="submit(f)">
-  <div ngModelGroup id="contact" #contact="ngModelGroup">
+  <div ngModelGroup name="contact" #contact="ngModelGroup">
     <div class="form-group">
       <label for="firstName" class="form-label"> First name </label>
-      <input
-        minlength="3"
-        maxlength="10"
-        required
-        ngModel
-        name="firstName"
-        #firstName="ngModel"
-        id="firstName"
-        class="form-control"
-        [class.is-invalid]="firstName.touched && firstName.control.value === ''"
-        (change)="log(firstName)"
-      />
+      <input minlength="3" maxlength="10" required ngModel name="firstName" #firstName="ngModel" id="firstName"
+        class="form-control" [class.is-invalid]="firstName.touched && firstName.control.value === ''"
+        (change)="log(firstName)" />
       <div class="" *ngIf="firstName.touched">
-        <span *ngIf="firstName.errors?.['minlength']"
-          >Username must be at least
-          {{firstName.errors?.['minlength'].requiredLength}} characters</span
-        >
-        <span *ngIf="firstName.errors?.['maxlength']"
-          >Username must not be greater than
-          {{firstName.errors?.['maxlength'].requiredLength}} characters</span
-        >
+        <span *ngIf="firstName.errors?.['minlength']">Username must be at least
+          {{firstName.errors?.['minlength'].requiredLength}} characters</span>
+        <span *ngIf="firstName.errors?.['maxlength']">Username must not be greater than
+          {{firstName.errors?.['maxlength'].requiredLength}} characters</span>
         <span *ngIf="firstName.errors?.['required']">Username required</span>
       </div>
     </div>
     <div class="form-group">
       <label for="message" class="form-label"> Message </label>
-      <textarea
-        required
-        pattern="banana"
-        ngModel
-        name="message"
-        id="message"
-        #message="ngModel"
-        class="form-control"
-        [class.is-invalid]="message.touched && message.invalid"
-        cols="30"
-        rows="10"
-      >
+      <textarea required pattern="banana" ngModel name="message" id="message" #message="ngModel" class="form-control"
+        [class.is-invalid]="message.touched && message.invalid" cols="30" rows="10">
       </textarea>
       <div *ngIf="message.touched">
         <span *ngIf="message.errors?.['pattern']"> Message must be banana </span>
         <span *ngIf="message.errors?.['required']"> Message required </span>
       </div>
     </div>
+    <div class="form-check">
+      <label for="isSubscribed" class="form-check-label">
+        Subscribe to our newsletter
+      </label>
+      <input type="checkbox" ngModel name="isSubscribed" #isSubscribed="ngModel" id="" class="form-check-input">
+    </div>
   </div>
-
+  {{f.value | json}}
   <div class="form-group">
-    <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+    <button class="btn btn-sm btn-primary" [disabled]="!f.valid" type="submit">Submit</button>
   </div>
 </form>
