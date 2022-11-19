@@ -36,6 +36,13 @@
       <option selected>Open this select menu</option>
       <option *ngFor="let method of contactMethods" [ngValue]="method">{{method.name}}</option>
     </select>
+
+    <div class="form-check" *ngFor="let method of contactMethods">
+      <label for="contactOption" class="form-check-label" >
+        {{method.name}}
+        <input type="radio" ngModel name="contactOption" [value]="method.id" class="form-check-input">
+      </label>
+    </div>
   </div>
   {{f.value | json}}
   <div class="form-group">
