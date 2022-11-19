@@ -1,0 +1,66 @@
+<form #f="ngForm" (ngSubmit)="submit(f)" class="col-6 mx-auto mt-5">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      required
+      minlength="5"
+      ngModel
+      name="name"
+      #name="ngModel"
+      type="text"
+      class="form-control"
+      [class.is-invalid]="name.touched && !name.valid"
+    />
+    <div class="invalid-feedback">
+      <span *ngIf="name.errors?.['required']"
+        >The name of the course is required</span
+      >
+      <span *ngIf="name.errors?.['minlength']"
+        >The name must be at least 5 character</span
+      >
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <select
+      ngModel
+      name="category"
+      #category="ngModel"
+      class="form-select"
+      [class.is-invalid]="category.touched && !category.valid"
+      id="category"
+      aria-label="Default select example"
+    >
+      <option value="">Select an option</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+    <div class="invalid-feedback">
+      <span *ngIf="category.errors?.['required']"
+        >The category of the course is required</span
+      >
+    </div>
+  </div>
+
+  <div class="form-check mb-3">
+    <input
+    ngModel
+      name="hasGuaranteed"
+      class="form-check-input"
+      type="checkbox"
+      id="Guaranteed"
+    />
+    <label class="form-check-label" for="Guaranteed">
+      30 days money back
+    </label>
+  </div>
+  <input
+    type="submit"
+    [disabled]="!f.valid"
+    value="Submit"
+    class="btn btn-lg btn-primary"
+  />
+  {{ f.value | json }}
+</form>
