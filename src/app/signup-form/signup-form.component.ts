@@ -30,6 +30,10 @@ export class SignupFormComponent {
 
     currentPasswordStrength = { name: 'weak', color: 'bg-danger', width: '10' };
 
+    login(){
+      this.form.setErrors({ password: "password is required", username: "username is required" });
+    }
+
     handlePasswordStrength(password: any) {
         const passwordValue = password.value as string;
 

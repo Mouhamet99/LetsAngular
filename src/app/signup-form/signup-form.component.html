@@ -1,4 +1,9 @@
-<form [formGroup]="form" class="col-6 mx-auto ">
+<form [formGroup]="form" class="col-6 mx-auto" (submit)="login()">
+    <p *ngIf="form.errors" class="my-3">
+        <span  class="text-danger">
+            {{form.errors | json}}
+        </span>
+    </p>
     <div class="form-group mb-3">
         <label for="username">Username</label>
         <input
