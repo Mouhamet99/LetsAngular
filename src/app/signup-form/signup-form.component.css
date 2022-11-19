@@ -1,1 +1,16 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+.bg-danger{
+    background-color: red !important;
+}
+.bg-success{
+    background-color: green !important;
+}
+.bg-primary{
+    background-color: rgb(8, 8, 211) !important;
+}
+.bg-secondary{
+    background-color: grey !important;
+}
+.bg-warning{
+    background-color: yellow !important;
+}
