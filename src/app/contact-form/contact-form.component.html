@@ -13,6 +13,7 @@
         <span *ngIf="firstName.errors?.['required']">Username required</span>
       </div>
     </div>
+
     <div class="form-group">
       <label for="message" class="form-label"> Message </label>
       <textarea required pattern="banana" ngModel name="message" id="message" #message="ngModel" class="form-control"
@@ -23,12 +24,18 @@
         <span *ngIf="message.errors?.['required']"> Message required </span>
       </div>
     </div>
+
     <div class="form-check">
       <label for="isSubscribed" class="form-check-label">
         Subscribe to our newsletter
       </label>
       <input type="checkbox" ngModel name="isSubscribed" #isSubscribed="ngModel" id="" class="form-check-input">
     </div>
+
+    <select multiple ngModel name="contactMethod" #contactMethod="ngModel" class="form-select" aria-label="Default select example">
+      <option selected>Open this select menu</option>
+      <option *ngFor="let method of contactMethods" [ngValue]="method">{{method.name}}</option>
+    </select>
   </div>
   {{f.value | json}}
   <div class="form-group">
