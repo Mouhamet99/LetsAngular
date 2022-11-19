@@ -21,6 +21,7 @@ export class NewCourseFormComponent {
       let index = this.topics.controls.indexOf(topic);
       this.topics.removeAt(index);
     }
+    
     get topics() {
         return this.form.get('topics') as FormArray;
     }
