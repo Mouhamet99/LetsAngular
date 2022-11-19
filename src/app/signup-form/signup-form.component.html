@@ -4,54 +4,56 @@
             {{form.errors | json}}
         </span>
     </p>
-    <div class="form-group mb-3">
-        <label for="username">Username</label>
-        <input
-            formControlName="username"
-            [class.is-invalid]="username?.touched && !username?.valid"
-            id="username"
-            type="text"
-            class="form-control"
-        />
-        <span *ngIf="username?.pending" class="text-danger">
-            Checking uniqueness...
-        </span>
-        <div class="invalid-feedback">
-            <span *ngIf="username?.errors?.['required']"
-                >Username is required</span
-            >
-            <span *ngIf="username?.errors?.['minlength']">
-                Username must be at least
-                {{username?.errors?.['minlength'].requiredLength}} characters
+    <div class="form-group" formGroupName="account">
+        <div class="form-group mb-3">
+            <label for="username">Username</label>
+            <input
+                formControlName="username"
+                [class.is-invalid]="username?.touched && !username?.valid"
+                id="username"
+                type="text"
+                class="form-control"
+            />
+            <span *ngIf="username?.pending" class="text-danger">
+                Checking uniqueness...
             </span>
-            <span *ngIf="username?.errors?.['cannotContainSpace']"
-                >Username cannot contain spaces</span
-            >
-            <span *ngIf="username?.errors?.['shouldBeUnique']">
-                Username must be unique
-            </span>
-        </div>
-    </div>
-    <div class="form-group mb-3">
-        <label for="password">Password</label>
-        <input
-            formControlName="password"
-            [class.is-invalid]="password?.touched && !password?.valid"
-            id="password"
-            type="text"
-            class="form-control"
-            (keyup)="handlePasswordStrength(password)"
-        />
-        <div class="invalid-feedback">
-            <span *ngIf="password?.touched && !password?.valid"
-                >password is required</span
-            >
-        </div>
-        <div class=" my-3">
-            <div class="progress" style="height: 5px;">
-                <div class="progress-bar" [class]="currentPasswordStrength.color" role="progressbar" [style]="'width: '+currentPasswordStrength.width+'%'" [attr.aria-valuenow]="currentPasswordStrength.width" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="invalid-feedback">
+                <span *ngIf="username?.errors?.['required']"
+                    >Username is required</span
+                >
+                <span *ngIf="username?.errors?.['minlength']">
+                    Username must be at least
+                    {{username?.errors?.['minlength'].requiredLength}} characters
+                </span>
+                <span *ngIf="username?.errors?.['cannotContainSpace']"
+                    >Username cannot contain spaces</span
+                >
+                <span *ngIf="username?.errors?.['shouldBeUnique']">
+                    Username must be unique
+                </span>
             </div>
-            <p>Password Strength : {{currentPasswordStrength.name}}</p>
+        </div>
+        <div class="form-group mb-3">
+            <label for="password">Password</label>
+            <input
+                formControlName="password"
+                [class.is-invalid]="password?.touched && !password?.valid"
+                id="password"
+                type="text"
+                class="form-control"
+                (keyup)="handlePasswordStrength(password)"
+            />
+            <div class="invalid-feedback">
+                <span *ngIf="password?.touched && !password?.valid"
+                    >password is required</span
+                >
+            </div>
+            <div class=" my-3">
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" [class]="currentPasswordStrength.color" role="progressbar" [style]="'width: '+currentPasswordStrength.width+'%'" [attr.aria-valuenow]="currentPasswordStrength.width" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p>Password Strength : {{currentPasswordStrength.name}}</p>
+            </div>
         </div>
     </div>
     <p>
