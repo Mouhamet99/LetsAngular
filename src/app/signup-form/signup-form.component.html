@@ -10,6 +10,7 @@
             <div class="invalid-feedback">
                 <span *ngIf="username?.errors?.['required']" >Username is required</span>
                 <span *ngIf="username?.errors?.['minlength']" >Username must be at least {{username?.errors?.['minlength'].requiredLength}} characters</span>
+                <span *ngIf="username?.errors?.['cannotContainSpace']">Username cannot contain spaces</span>
             </div>
     </div>
     <div class="form-group mb-3">
