@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Post } from './posts.component';
 import { NotFoundError } from '../common/not-found-error';
 import { AppError } from '../common/app-error';
+import { BadInputError } from '../common/bad-input-error';
 
 @Injectable()
 export class PostsService {
@@ -16,6 +17,10 @@ export class PostsService {
         if (error.status === 0) {
             alert('A client-side or network error occurred: check console');
             console.log('An error occurred: ' + error.error);
+        } else if (error.status === 400){
+            return throwError(
+                () => new BadInputError(error.error)
+            );
         } else if (error.status === 404){
             return throwError(
                 () => new NotFoundError('Post not Found')
