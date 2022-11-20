@@ -27,6 +27,21 @@ export class PostsComponent {
       this.posts.unshift(post);
     });
   }
+
+  updatePost(post:Post){
+    this.postService.updatePost(post).subscribe((res) => {
+      console.log("Update Post response", res);
+    })
+  }
+
+  deletePost(post:Post){
+    this.postService.deletePost(post.id).subscribe(res=>{
+      let index = this.posts.indexOf(post)
+      this.posts.splice(index, 1)
+      
+      console.log("Delete post response", res)
+    })
+  }
 }
 
 export interface Post {

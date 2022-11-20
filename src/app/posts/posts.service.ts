@@ -22,5 +22,15 @@ export class PostsService {
     createPost(post: { title: string }): Observable<{ id: number }> {
         return this.http.post<Post>(this.url, post)
     }
+   
+    updatePost(post: Post): Observable<Post> {
+    post.title = "post update"
+
+        return this.http.put<Post>(this.url+'/'+post.id, post)
+    }
+  
+    deletePost(id: number): Observable<unknown> {
+        return this.http.delete(this.url+'/'+id)
+    }
 
 }
