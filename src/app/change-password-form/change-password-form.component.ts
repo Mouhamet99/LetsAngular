@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidators } from './password-validators';
 
 @Component({
@@ -8,23 +8,16 @@ import { PasswordValidators } from './password-validators';
     styleUrls: ['./change-password-form.component.css'],
 })
 export class ChangePasswordFormComponent {
-    form = new FormGroup({
-        oldPassword: new FormControl(
-            '',
-            Validators.required,
-            PasswordValidators.shouldMatchCurrentPassword
-        ),
-        newPassword: new FormControl(
-            '',
-            [Validators.required, Validators.minLength(5)],
-        ),
-        confirmPassword: new FormControl(
-            '',
-            [Validators.required],
-            
-
-        ),
-    });
+    form:FormGroup;
+    constructor(fb: FormBuilder){
+        this.form = fb.record({
+            oldPassword: ['', Validators.required, PasswordValidators.shouldMatchCurrentPassword],
+            newPassword: ['', [Validators.required, Validators.minLength(5) ]],
+            confirmPassword: ['', Validators.required]
+        },{
+            validators: PasswordValidators.confirmPasswordshouldMatchNewPassword
+        })
+    }
 
     get oldPassword(){
         return this.form.get('oldPassword') as FormControl;

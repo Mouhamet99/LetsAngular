@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 
 export class PasswordValidators {
     static shouldMatchCurrentPassword(
@@ -8,12 +8,16 @@ export class PasswordValidators {
             setTimeout(() => {
                 if (control.value !== '123')
                     resolve({ shouldMatchCurrentPassword: true });
-                else
-                    resolve(null)
+                else resolve(null);
             }, 1000);
         });
     }
-    static shouldMatchNewPassword(control: AbstractControl): ValidationErrors|null{
-        return {shouldMatchNewPassword: true}
+    static confirmPasswordshouldMatchNewPassword(control: AbstractControl): ValidationErrors | null {
+        let newPassword = control.get('newPassword') as FormControl;
+        let confirmPassword = control.get('confirmPassword') as FormControl;
+        
+        return confirmPassword.value !== newPassword.value
+            ? { confirmPasswordshouldMatchNewPassword: true }
+            : null;
     }
 }
