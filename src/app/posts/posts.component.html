@@ -1,3 +1,8 @@
+<p class="fs-2 ">Headers :</p>
+<p class="d-flex flex-column fw-bold">
+    <span *ngFor="let header of headers">{{header}}</span>
+</p>
+<p class="fs-2 ">Body :</p>
 <ul class="list-group" *ngIf="posts.length>0">
     <li class="list-group-item" *ngFor="let post of posts">{{ post.title }}</li>
 </ul>

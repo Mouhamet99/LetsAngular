@@ -16,7 +16,7 @@ export class PostsService {
         //     observe: 'body' | 'events' | 'response',
         //     responseType: 'arraybuffer'|'blob'|'json'|'text',
         // }
-        return this.http.get<Post[]>('http://jsonplaceholder.typicode.com/posts')
+        return this.http.get<Post[]>('http://jsonplaceholder.typicode.com/posts',{observe: 'response'})
     }
 
 }
