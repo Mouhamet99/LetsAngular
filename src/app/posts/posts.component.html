@@ -3,6 +3,10 @@
     <span *ngFor="let header of headers">{{header}}</span>
 </p>
 <p class="fs-2 ">Body :</p>
+<form class="form-group my-3 d-flex gap-5" >
+    <input type="text" class="form-control" #title>
+    <input type="button" value="Ajouter" class="btn btn-success" (click)="createPost(title)">
+</form>
 <ul class="list-group" *ngIf="posts.length>0">
     <li class="list-group-item" *ngFor="let post of posts">{{ post.title }}</li>
 </ul>

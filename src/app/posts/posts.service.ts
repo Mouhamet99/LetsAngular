@@ -6,7 +6,7 @@ import { Post } from './posts.component';
 
 @Injectable()
 export class PostsService {
-   
+    private url = 'http://jsonplaceholder.typicode.com/posts'
     constructor(private http: HttpClient) {
 
     }
@@ -16,7 +16,11 @@ export class PostsService {
         //     observe: 'body' | 'events' | 'response',
         //     responseType: 'arraybuffer'|'blob'|'json'|'text',
         // }
-        return this.http.get<Post[]>('http://jsonplaceholder.typicode.com/posts',{observe: 'response'})
+        return this.http.get<Post[]>(this.url, { observe: 'response' })
+    }
+
+    createPost(post: { title: string }): Observable<{ id: number }> {
+        return this.http.post<Post>(this.url, post)
     }
 
 }

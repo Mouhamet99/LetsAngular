@@ -9,15 +9,22 @@ import { PostsService } from './posts.service';
 })
 export class PostsComponent {
   posts: Post[] = [];
-  headers:string[] =[];
+  headers: string[] = [];
 
-  constructor(postService: PostsService) {
+  constructor(private postService: PostsService) {
     postService.getPosts().subscribe((resp) => {
-      
       const keys = resp.headers.keys();
       this.headers = keys.map((key) => `${key}: ${resp.headers.get(key)}`);
-      
-      this.posts = [...resp.body! ];
+
+      this.posts = [...resp.body!];
+    });
+  }
+
+  createPost(input: HTMLInputElement) {
+    let post: any = { title: input.value, body: input.value };
+    this.postService.createPost(post).subscribe((res) => {
+      post.id = res.id;
+      this.posts.unshift(post);
     });
   }
 }
