@@ -11,29 +11,13 @@ import { BadInputError } from '../common/bad-input-error';
 export class PostsService {
     private url = 'http://jsonplaceholder.typicode.com/posts';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     private handleError(error: HttpErrorResponse) {
-        if (error.status === 0) {
-            alert('A client-side or network error occurred: check console');
-            console.log('An error occurred: ' + error.error);
-        } else if (error.status === 400){
-            return throwError(
-                () => new BadInputError(error.error)
-            );
-        } else if (error.status === 404){
-            return throwError(
-                () => new NotFoundError('Post not Found')
-            );
-        } else {
-            // this.form.setErrors(error)
-            alert(
-                `The backend returned an unsuccessful response code: check console`
-            );
-            console.error(
-                `Backend returned code ${error.status}, body was: `,
-                error.error
-            );
+        if (error.status === 400) {
+            return throwError(() => new BadInputError(error.error));
+        } else if (error.status === 404) {
+            return throwError(() => new NotFoundError('Post not Found'));
         }
 
         // Return an observable with a user-facing error message.
@@ -62,11 +46,12 @@ export class PostsService {
     }
 
     deletePost(id: number): Observable<unknown> {
-        return this.http.delete(this.url + '/' + id).pipe(catchError(this.handleError));
+        return this.http
+            .delete(this.url + '/' + id)
+            .pipe(catchError(this.handleError));
     }
-    
+
     badDeletePost(id: number): Observable<unknown> {
         return this.http.delete(this.url).pipe(catchError(this.handleError));
     }
-   
 }
