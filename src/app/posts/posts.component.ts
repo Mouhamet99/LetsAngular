@@ -1,5 +1,5 @@
 import { HttpHeaderResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from './posts.service';
 
 @Component({
@@ -7,17 +7,22 @@ import { PostsService } from './posts.service';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css'],
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
   posts: Post[] = [];
   headers: string[] = [];
 
   constructor(private postService: PostsService) {
-    postService.getPosts().subscribe((resp) => {
+    
+  }
+
+  ngOnInit(){
+    this.postService.getPosts().subscribe((resp) => {
       const keys = resp.headers.keys();
       this.headers = keys.map((key) => `${key}: ${resp.headers.get(key)}`);
 
       this.posts = [...resp.body!];
     });
+
   }
 
   createPost(input: HTMLInputElement) {
