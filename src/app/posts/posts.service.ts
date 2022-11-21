@@ -16,7 +16,9 @@ export class PostsService {
     private handleError(error: HttpErrorResponse) {
         if (error.status === 400) {
             return throwError(() => new BadInputError(error.error));
-        } else if (error.status === 404) {
+        }
+
+        if (error.status === 404) {
             return throwError(() => new NotFoundError('Post not Found'));
         }
 
@@ -37,12 +39,12 @@ export class PostsService {
     }
 
     createPost(post: { title: string }): Observable<{ id: number }> {
-        return this.http.post<Post>(this.url, post);
+        return this.http.post<Post>(this.url, post).pipe(catchError(this.handleError));;
     }
 
     updatePost(post: Post): Observable<Post> {
         post.title = 'post update';
-        return this.http.put<Post>(this.url + '/' + post.id, post);
+        return this.http.put<Post>(this.url + '/' + post.id, post).pipe(catchError(this.handleError));
     }
 
     deletePost(id: number): Observable<unknown> {
