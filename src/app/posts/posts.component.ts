@@ -18,7 +18,7 @@ export class PostsComponent implements OnInit {
     constructor(private postService: PostsService) {}
 
     ngOnInit() {
-        this.postService.getPosts().subscribe({
+        this.postService.getAll().subscribe({
             next: (resp) => {
                 const keys = resp.headers.keys();
                 this.headers = keys.map(
@@ -29,9 +29,9 @@ export class PostsComponent implements OnInit {
         });
     }
 
-    createPost(input: HTMLInputElement) {
+    create(input: HTMLInputElement) {
         let post: any = { title: input.value, body: input.value };
-        this.postService.createPost(post).subscribe({
+        this.postService.create(post).subscribe({
             next: (res) => {
                 post.id = res.id;
                 this.posts.unshift(post);
@@ -44,14 +44,15 @@ export class PostsComponent implements OnInit {
         });
     }
 
-    updatePost(post: Post) {
-        this.postService.updatePost(post).subscribe((res) => {
+    update(post: Post) {
+        post.title = 'post update';
+        this.postService.update(post).subscribe((res) => {
             console.log('Update Post response', res);
         });
     }
 
-    deletePost(post: Post) {
-        this.postService.deletePost(post.id).subscribe({
+    delete(post: Post) {
+        this.postService.delete(post.id).subscribe({
             next: (res) => {
                 let index = this.posts.indexOf(post);
                 this.posts.splice(index, 1);
@@ -65,8 +66,8 @@ export class PostsComponent implements OnInit {
         });
     }
 
-    badDeletePost(post: Post) {
-        this.postService.badDeletePost(post.id).subscribe({
+    badDelete(post: Post) {
+        this.postService.badDelete(post.id).subscribe({
             next: (res) => {
                 let index = this.posts.indexOf(post);
                 this.posts.splice(index, 1);

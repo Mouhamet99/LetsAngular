@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppErrorHandler } from './common/app-error-handler';
 import { PostsComponent } from './posts/posts.component';
 import { PostsService } from './posts/posts.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { PostsService } from './posts/posts.service';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [PostsService, {provide:ErrorHandler, useClass:AppErrorHandler}],
+  providers: [PostsService, {provide:ErrorHandler, useClass:AppErrorHandler}, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
