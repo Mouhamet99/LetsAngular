@@ -31,12 +31,15 @@ export class PostsComponent implements OnInit {
 
     create(input: HTMLInputElement) {
         let post: any = { title: input.value, body: input.value };
+        this.posts.unshift(post);
+
         this.postService.create(post).subscribe({
             next: (res) => {
                 post.id = res.id;
-                this.posts.unshift(post);
             },
             error: (error: AppError) => {
+                this.posts.shift();
+
                 if (error instanceof BadInputError) {
                     this.error = error.originalError;
                 } else throw error;
@@ -46,19 +49,19 @@ export class PostsComponent implements OnInit {
 
     update(post: Post) {
         post.title = 'post update';
+
         this.postService.update(post).subscribe((res) => {
             console.log('Update Post response', res);
         });
     }
 
     delete(post: Post) {
+        let index = this.posts.indexOf(post);
+        this.posts.splice(index, 1);
+
         this.postService.delete(post.id).subscribe({
-            next: (res) => {
-                let index = this.posts.indexOf(post);
-                this.posts.splice(index, 1);
-                console.log('Delete post response', res);
-            },
             error: (error: AppError) => {
+                this.posts.splice(index, 0,post);
                 if (error instanceof NotFoundError)
                     this.error = error.originalError;
                 else throw error;
