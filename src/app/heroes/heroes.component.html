@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="heroes.length > 0; then heroesList else noHeroes"></tbody>
+    <ng-template #heroesList>
+        <tr *ngFor="let hero of heroes">
+            <th scope="row">{{hero.id}}</th>
+            <td>{{hero.name}}</td>
+            <td>{{hero.username}}</td>
+            <td>
+                <button class="btn-warning btn-sm">Delete</button>
+                <button class="btn-secondary btn-sm">Edit</button>
+            </td>
+          </tr>
+    </ng-template>
+    <ng-template #noHeroes>
+        <p class="text-center">No Heroes yet </p>
+    </ng-template>
+  </table>
