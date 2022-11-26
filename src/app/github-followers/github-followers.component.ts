@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { combineLatestWith } from 'rxjs/operators';
+import { combineLatestWith, map, switchMap } from 'rxjs/operators';
 
 import { GithubFollowersService } from './github-followers.service';
 
@@ -16,12 +16,27 @@ export class GithubFollowersComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.route.queryParamMap.pipe(combineLatestWith(this.route.paramMap)).subscribe(params=>{
-            console.log("Query param: ",params[0]);
-            console.log(" param: ",params[1]);
+        this.route.queryParamMap.pipe(
+            combineLatestWith(this.route.paramMap),
+            switchMap((combinedParams)=>{
+
+                console.log("Query param: ",combinedParams[0]);
+                console.log(" param: ",combinedParams[1]);
+
+                return this.githubFollowersService.getAll()
+            })
+
+        ).subscribe({
+            next: (followers) => {
+                this.followers = [...followers as Follower[]];
+            },
+            error: (error) => {
+                if (error.status === 404) {
+                    console.log("not found");
+                }
+            }
         })
 
-        this.getFollowers();
     }
 
     getFollowers() {
