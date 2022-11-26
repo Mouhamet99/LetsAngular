@@ -41,7 +41,7 @@ import { RouterModule } from '@angular/router';
             {path: '', component: HomeComponent},
             {path:'followers/:username', component: GithubProfileComponent},
             {path:'followers', component: GithubFollowersComponent},
-            {path:'post', component: PostsComponent},
+            {path:'posts', component: PostsComponent},
             {path: '**', component: NotFoundComponent}
         ])
     ],
