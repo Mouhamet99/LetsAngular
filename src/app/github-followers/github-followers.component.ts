@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { combineLatestWith } from 'rxjs/operators';
+
 import { GithubFollowersService } from './github-followers.service';
 
 @Component({
@@ -12,11 +15,10 @@ export class GithubFollowersComponent implements OnInit {
     constructor(private route: ActivatedRoute, private githubFollowersService: GithubFollowersService) {}
 
     ngOnInit(): void {
-        this.route.queryParamMap.subscribe(queryParam=>{
-            console.log("Query param: ",queryParam);
-        })
-        this.route.paramMap.subscribe(param=>{
-            console.log("param: ",param);
+
+        this.route.queryParamMap.pipe(combineLatestWith(this.route.paramMap)).subscribe(params=>{
+            console.log("Query param: ",params[0]);
+            console.log(" param: ",params[1]);
         })
 
         this.getFollowers();
