@@ -10,7 +10,7 @@
                             alt="card image"></p>
                     <h4 class="card-title">{{follower.login}}</h4>
                     <p class="card-text"></p>
-                    <a [routerLink]="['/followers',follower.id]" class="btn btn-primary btn-sm mx-2"><i
+                    <a [routerLink]="['/followers',follower.id, follower.login]" class="btn btn-primary btn-sm mx-2"><i
                             class="fa fa-plus"></i>Profil</a>
                     <a [href]="follower.html_url" class="btn btn-outline-primary btn-sm mx-2"><i
                             class="fa fa-plus"></i>Github Link</a>
