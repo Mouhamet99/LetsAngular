@@ -1,0 +1,7 @@
+<h1>blog-archives </h1>
+<ul>
+    <li *ngFor="let archive of archives">
+        <a (click)="navigate(archive.year, archive.month)">{{ archive.year }} / {{ archive.month }}</a>
+    </li>
+</ul>
+
