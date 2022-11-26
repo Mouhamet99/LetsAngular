@@ -14,6 +14,11 @@ import { ConfigComponent } from './config/config.component';
 import { ConfigService } from './config/config.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroService } from './heroes/heroes.service';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -22,12 +27,23 @@ import { HeroService } from './heroes/heroes.service';
         GithubFollowersComponent,
         ConfigComponent,
         HeroesComponent,
+        GithubProfileComponent,
+        NotFoundComponent,
+        HomeComponent,
+        NavbarComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
         HttpClientJsonpModule,
+        RouterModule.forRoot([
+            {path: '', component: HomeComponent},
+            {path:'followers/:username', component: GithubProfileComponent},
+            {path:'followers', component: GithubProfileComponent},
+            {path:'post', component: PostsComponent},
+            {path: '**', component: NotFoundComponent}
+        ])
     ],
     providers: [
         PostsService,
