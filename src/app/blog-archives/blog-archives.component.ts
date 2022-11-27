@@ -10,7 +10,7 @@ import { Archive } from './archive';
 export class BlogArchivesComponent implements OnInit {
     archives: Archive[] = [];
 
-    constructor(private router: Router) { }
+    constructor() { }
 
     ngOnInit(): void {
         this.archives = [
@@ -20,7 +20,4 @@ export class BlogArchivesComponent implements OnInit {
         ];
     }
 
-    navigate(year: string, month: string) {
-        this.router.navigate(['/archive/', year, month])
-    }
 }
